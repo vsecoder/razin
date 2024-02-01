@@ -10,14 +10,15 @@ def f(x, a, b):
         return abs(tan(0.2 * x)) + x
     return (
             log(x) + sin(x)
-        ) if x <= 0 else 'Error'
+        ) if x >= 0 else 'Error'
 
 
 if __name__ == "__main__":
-    a = int(input("a: "))
-    b = int(input("b: "))
-    x = int(input("x: "))
+    a = float(input("a: "))
+    b = float(input("b: "))
+    x = float(input("x: "))
 
-    if a > b: a, b = b, a
+    if a > b:
+        a, b = b, a
 
     print(f"f({x}) = {f(x, a, b)}")

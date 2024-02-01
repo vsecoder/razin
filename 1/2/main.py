@@ -1,7 +1,4 @@
 # Variant 27
-import random
-
-
 def shoot(x, y, r1, r2):
     # 1 и 3 четверть
     if x * y > 0:
@@ -45,10 +42,12 @@ if __name__ == "__main__":
     r1 = float(input("r1: "))
     r2 = float(input("r2: "))
 
-    if r1 > r2: r1, r2 = r2, r1
+    if r1 > r2:
+        r1, r2 = r2, r1
 
     print(f"Попало в: {shoot(x, y, r1, r2)}")
 
+    #import random
     #for _ in range(20):
     #    x, y = random.randint(-10, 10), random.randint(-10, 10)
     #    print({(x, y): shoot(x, y, 5, 10)})
