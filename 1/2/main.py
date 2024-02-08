@@ -12,18 +12,25 @@ def shoot(x, y, r1, r2):
         return 'A'
     # 2 и 4 четверть
     elif x * y < 0:
+        # вне квадрата
         if abs(x) > r2 or abs(y) > r2:
             return 'D'
+        # на границе
         elif abs(x) == r2 or abs(y) == r2:
             if y > 0:
                 return 'B D'
             return 'C D'
+        # вне малого квадрата
         elif abs(x) > r1 or abs(y) > r1:
             if y > 0:
                 return 'B'
             return 'C'
-        elif abs(x) == r1 or abs(y) == r1 and y > 0:
-            return True
+        # на границе малого круга
+        elif abs(x) == r1 or abs(y) == r1:
+            if y > 0:
+                return 'A B'
+            return 'A C'
+        # центр
         return 'A'
     # оси
     else:
@@ -52,7 +59,7 @@ if __name__ == "__main__":
 
     print(f"Попало в: {shoot(x, y, r1, r2)}")
 
-    #import random
-    #for _ in range(20):
-    #    x, y = random.randint(-10, 10), random.randint(-10, 10)
-    #    print({(x, y): shoot(x, y, 5, 10)})
+    # import random
+    # for _ in range(20):
+    #     x, y = random.randint(-10, 10), random.randint(-10, 10)
+    #     print({(x, y): shoot(x, y, 5, 10)})

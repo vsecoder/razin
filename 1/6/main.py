@@ -18,5 +18,5 @@ if __name__ == "__main__":
         res += digit / 4
         n += 1
 
-    print(f(x))
-    print(res)
+    print(f"По формуле: {f(x)}")
+    print(f"По алгоритму: {res}")
