@@ -48,16 +48,16 @@ def shoot(x, y, r1, r2):
                 ('D' if abs(y) == r2 else '')
 
 
-if __name__ == "__main__":
-    x = float(input("x: "))
-    y = float(input("y: "))
-    r1 = float(input("r1: "))
-    r2 = float(input("r2: "))
+if __name__ == '__main__':
+    x = float(input('x: '))
+    y = float(input('y: '))
+    r1 = float(input('r1: '))
+    r2 = float(input('r2: '))
 
     if r1 > r2:
         r1, r2 = r2, r1
 
-    print(f"Попало в: {shoot(x, y, r1, r2)}")
+    print(f'Попало в: {shoot(x, y, r1, r2)}')
 
     # import random
     # for _ in range(20):

@@ -42,10 +42,10 @@ def s():
     return circle + square_big + square_mini
 
 
-if __name__ == "__main__":
-    n = int(input("n: "))
+if __name__ == '__main__':
+    n = int(input('n: '))
     monte = monte_carlo(n)
     S = s()
-    print(f"Метод Монте-Карло: {monte}")
-    print(f"Вычислениями: {S}")
-    print(f"Разница: {abs(monte-S)}")
+    print(f'Метод Монте-Карло: {monte}')
+    print(f'Вычислениями: {S}')
+    print(f'Разница: {abs(monte-S)}')

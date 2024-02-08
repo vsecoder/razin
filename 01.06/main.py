@@ -2,15 +2,15 @@ def f(x):
     return (x + 2) / (x**2 - 2*x - 3)
 
 
-if __name__ == "__main__":
-    x = float(input("x: "))
-    e = float(input("e: "))
+if __name__ == '__main__':
+    x = float(input('x: '))
+    e = float(input('e: '))
     digit = 0
     res = 0
     n = 0
 
     if abs(x) >= 1:
-        print("Error: |x| < 1")
+        print('Error: |x| < 1')
         exit()
 
     while abs(f(x) - res) > e:
@@ -18,5 +18,5 @@ if __name__ == "__main__":
         res += digit / 4
         n += 1
 
-    print(f"По формуле: {f(x)}")
-    print(f"По алгоритму: {res}")
+    print(f'По формуле: {f(x)}')
+    print(f'По алгоритму: {res}')

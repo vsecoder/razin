@@ -72,12 +72,12 @@ def min_max(a, b, dx):
     return y_min, y_max
 
 
-if __name__ == "__main__":
-    a = float(input("a: "))
-    b = float(input("b: "))
-    dx = float(input("dx: "))
-    n = int(input("dots: "))
-    print(f"Методом прямоугольника: {f1(a, b, dx)}")
-    print(f"Методом трапеции: {f2(a, b, dx)}")
+if __name__ == '__main__':
+    a = float(input('a: '))
+    b = float(input('b: '))
+    dx = float(input('dx: '))
+    n = int(input('dots: '))
+    print(f'Методом прямоугольника: {f1(a, b, dx)}')
+    print(f'Методом трапеции: {f2(a, b, dx)}')
     c, d = min_max(a, b, dx)
-    print(f"Методом Монте-Карло: {monte_carlo(n, a, b, c, d)}")
+    print(f'Методом Монте-Карло: {monte_carlo(n, a, b, c, d)}')

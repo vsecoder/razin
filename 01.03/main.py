@@ -16,9 +16,9 @@ def f(a, b, dx):
     return s
 
 
-if __name__ == "__main__":
-    a = int(input("a: "))
-    b = int(input("b: "))
-    dx = int(input("dx: "))
+if __name__ == '__main__':
+    a = int(input('a: '))
+    b = int(input('b: '))
+    dx = int(input('dx: '))
 
-    print(f"S = {f(a, b, dx)}")
+    print(f'S = {f(a, b, dx)}')
