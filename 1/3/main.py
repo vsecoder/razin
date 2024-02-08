@@ -1,8 +1,8 @@
-from math import log, sin
+from math import tan
 
 
-def y_(x):
-    return log(x) + sin(x)
+def y(x):
+    return abs(tan(0.2*x)) + x
 
 
 def f(a, b, dx):
@@ -10,8 +10,7 @@ def f(a, b, dx):
     x = a
 
     while x <= b:
-        y = y_(x)
-        s += y * dx
+        s += y(x) * dx
         x += dx
 
     return s

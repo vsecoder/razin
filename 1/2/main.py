@@ -15,18 +15,23 @@ def shoot(x, y, r1, r2):
         if abs(x) > r2 or abs(y) > r2:
             return 'D'
         elif abs(x) == r2 or abs(y) == r2:
-            return ('B ' if y > 0 else 'C ') + 'D'
+            if y > 0:
+                return 'B D'
+            return 'C D'
         elif abs(x) > r1 or abs(y) > r1:
-            return 'B' if y > 0 else 'C'
-        elif abs(x) == r1 or abs(y) == r1 and y > 0: return True
+            if y > 0:
+                return 'B'
+            return 'C'
+        elif abs(x) == r1 or abs(y) == r1 and y > 0:
+            return True
         return 'A'
     # оси
     else:
         # ось Y
         if y == 0:
             return 'A ' + \
-                ('C ' if r1 <= x <= r2 else '') + \
                 ('B ' if r1 <= -x <= r2 else '') + \
+                ('C ' if r1 <= x <= r2 else '') + \
                 ('D' if abs(x) == r2 else '')
         # ось X
         elif x == 0:

@@ -42,9 +42,8 @@ def f2(a, b, dx):
 
 def monte_carlo(n, a, b, c, d):
     m = 0
-    x_ = abs(b - a)
-    y_ = abs(d - c)
-    l = x_ * y_
+    l = abs(b - a) * abs(d - c)
+
     for _ in range(n):
         x = random.uniform(a, b)
         y = random.uniform(c, d)
@@ -81,4 +80,4 @@ if __name__ == "__main__":
     print(f"Методом прямоугольника: {f1(a, b, dx)}")
     print(f"Методом трапеции: {f2(a, b, dx)}")
     c, d = min_max(a, b, dx)
-    print(f"Методом Монте Карло: {monte_carlo(n, a, b, c, d)}")
+    print(f"Методом Монте-Карло: {monte_carlo(n, a, b, c, d)}")

@@ -9,11 +9,11 @@ def shoot(x, y, r1, r2):
             return True
 
     if abs(x) <= r2 and abs(y) <= r2:
-        if x >= 0 and y <= 0:
+        if x >= 0 >= y:
             return True
     
     if abs(x) <= r1 and abs(y) <= r1:
-        if x <= 0 and y >= 0:
+        if x <= 0 <= y:
             return True
 
     return False
@@ -22,6 +22,7 @@ def shoot(x, y, r1, r2):
 def monte_carlo(n):
     m = 0
     l = 20 ** 2
+
     for _ in range(n):
         x = random.uniform(-10, 10)
         y = random.uniform(-10, 10)
@@ -45,6 +46,6 @@ if __name__ == "__main__":
     n = int(input("n: "))
     monte = monte_carlo(n)
     S = s()
-    print(f"Метод Монте Карло: {monte}")
+    print(f"Метод Монте-Карло: {monte}")
     print(f"Вычислениями: {S}")
     print(f"Разница: {abs(monte-S)}")

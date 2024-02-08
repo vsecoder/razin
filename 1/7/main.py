@@ -23,8 +23,5 @@ if __name__ == "__main__":
             res += digit / 4
             n += 1
 
-        #print(i, end=" ")
-        #print(f(i), end=" ")
-        #print(res)
-        print(f"{i:f} {f(i):f} {res}")
+        print(f"{i:g} {f(i):g} {res:g}")
         i += dx
