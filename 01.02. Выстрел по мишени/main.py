@@ -11,7 +11,7 @@ while True:
     if 0 <= x <= r2 and 0 <= y <= r2 and x**2 + y**2 <= r2**2 or \
             0 >= x >= -r2 and 0 >= y >= -r2 and x**2 + y**2 <= r2**2 or \
             0 >= x >= -r1 and 0 <= y <= r1 or \
-            0 <= x <= r1 and y >= -r1:
+            0 <= x <= r1 and 0 >= y >= -r1:
         print('Область попадания A')
 
     if -r1 >= x >= -r2 and 0 <= y <= r2 or \
