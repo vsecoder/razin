@@ -14,4 +14,4 @@ while True:
     else:
         y = log(x) + sin(x)
 
-    print(f'y: {y}')
+    print(f'y: {y:g}\n')

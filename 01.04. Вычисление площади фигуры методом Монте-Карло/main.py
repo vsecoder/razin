@@ -1,51 +1,40 @@
-# v27. A+C
-import random
-from math import pi
 
+from random import uniform
 
-def shoot(x, y, r1, r2):
-    if x * y >= 0:
-        if x**2 + y**2 <= r2**2:
-            return True
+pi = 3.14                                      # число пи
+r1 = 5                                         # радиус малой окружности
+r2 = 2 * r1                                    # радиус большой окружности
 
-    if abs(x) <= r2 and abs(y) <= r2:
-        if x >= 0 >= y:
-            return True
-    
-    if abs(x) <= r1 and abs(y) <= r1:
-        if x <= 0 <= y:
-            return True
+S = (pi * r2 ** 2) / 2 + r2 ** 2 + r1 ** 2     # площадь фигуры
+l = (2 * r2) ** 2                              # площадь квадрата, описанного вокруг фигуры
 
-    return False
+while True:
+    N = int(input('Введите кол-во точек N: '))
 
-
-def monte_carlo(n):
     m = 0
-    l = 20 ** 2
 
-    for _ in range(n):
-        x = random.uniform(-10, 10)
-        y = random.uniform(-10, 10)
+    for _ in range(N):
+        x = uniform(-r2, r2)
+        y = uniform(-r2, r2)
 
-        c = shoot(x, y, 5, 10)
-
-        if c:
+        if 0 <= x <= r2 and 0 <= y <= r2 and x ** 2 + y ** 2 <= r2 ** 2 or \
+                0 >= x >= -r2 and 0 >= y >= -r2 and x ** 2 + y ** 2 <= r2 ** 2 or \
+                0 >= x >= -r1 and 0 <= y <= r1 or \
+                0 <= x <= r1 and y >= -r1:
             m += 1
 
-    return l * m / n
+        elif r1 <= x <= r2 and 0 >= y >= -r2 or \
+                -r1 >= y >= -r2 and 0 <= x <= r2:
+            m += 1
+
+    result = l * m / N
+
+    print('\nРезультат:\n')
+
+    print(f'Метод Монте-Карло: {result:g}')
+    print(f'Точное значение: {S:g}')
+    print('\n----------------------------------------\n')
 
 
-def s():
-    circle = (pi * 10 ** 2) / 2
-    square_big = 10 ** 2
-    square_mini = 5 ** 2
-    return circle + square_big + square_mini
 
 
-if __name__ == '__main__':
-    n = int(input('n: '))
-    monte = monte_carlo(n)
-    S = s()
-    print(f'Метод Монте-Карло: {monte}')
-    print(f'Вычислениями: {S}')
-    print(f'Разница: {abs(monte-S)}')

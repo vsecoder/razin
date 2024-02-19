@@ -1,24 +1,24 @@
+
 from math import tan
 
+while True:
+    a = float(input('Введите нижний предел интегрирования a: '))
+    b = float(input('Введите верхний предел интегрирования b: '))
+    dx = float(input('Введите шаг интегрирования dx: '))
 
-def y(x):
-    return abs(tan(0.2*x)) + x
-
-
-def f(a, b, dx):
     s = 0
     x = a
 
     while x <= b:
-        s += y(x) * dx
+        s += (abs(tan(0.2 * x)) + x) * dx
         x += dx
 
-    return s
+    print('\nРезультат:\n')
+
+    print(f'Значение интеграла {s}')
+    print('\n----------------------------------------\n')
 
 
-if __name__ == '__main__':
-    a = int(input('a: '))
-    b = int(input('b: '))
-    dx = int(input('dx: '))
 
-    print(f'S = {f(a, b, dx)}')
+
+
