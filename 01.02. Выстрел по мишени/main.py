@@ -14,16 +14,13 @@ while True:
             0 <= x <= r1 and 0 >= y >= -r1:
         print('Область попадания A')
 
-    if -r1 >= x >= -r2 and 0 <= y <= r2 or \
-            r1 <= y <= r2 and 0 >= x >= -r2:
+    if -r1 >= x >= -r2 and 0 <= y <= r2 or r1 <= y <= r2 and 0 >= x >= -r2:
         print('Область попадания B')
 
-    if r1 <= x <= r2 and 0 >= y >= -r2 or \
-            -r1 >= y >= -r2 and 0 <= x <= r2:
+    if r1 <= x <= r2 and 0 >= y >= -r2 or -r1 >= y >= -r2 and 0 <= x <= r2:
         print('Область попадания C')
 
-    if abs(x) >= r2 or abs(y) >= r2 or \
-            x * y > 0 and x**2 + y**2 >= r2**2:
+    if abs(x) >= r2 or abs(y) >= r2 or x * y > 0 and x**2 + y**2 >= r2**2:
         print('Область попадания D')
 
     print('\n----------------------------------------\n')

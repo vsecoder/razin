@@ -1,83 +1,52 @@
 from math import sin, log, tan
-import random
+from random import uniform
 
+while True:
+    print('Для выбора метода интегрирования введите требуемое число:')
+    print('1 - метод прямоугольников')
+    print('2 - метод трапеций')
+    method = int(input())
+    a = float(input('Введите нижний предел интегрирования a: '))
+    b = float(input('Введите верхний предел интегрирования b: '))
+    dx = float(input('Введите шаг интегрирования dx: '))
+    N = int(input('\nВведите количество точек N: '))
 
-def y1(x):
-    return abs(tan(0.2 * x)) + x
+    min_y, max_y = None, 0
+    S = 0
 
-
-def y2(x):
-    return log(x) + sin(x)
-
-
-def is_in(x, y):
-    if y2(x) <= y <= y1(x):
-        return True
-    return False
-
-
-def f1(a, b, dx):
-    s = 0
     x = a
-
     while x <= b:
-        y = y1(x) - y2(x)
-        s += y * dx
-        x += dx
+        if method:
+            S += (abs(tan(0.2 * x)) + x - log(x) + sin(x)) * dx
+        else:
+            xdx = x + dx
+            S += ((abs(tan(0.2 * xdx)) + xdx + abs(tan(0.2 * x)) + x) / 2 -
+                  (log(xdx) + sin(xdx) + log(x) + sin(x)) / 2) * dx
 
-    return s
+        y = [abs(tan(0.2 * x)) + x, log(x) + sin(x)]
+        if min_y is None:
+            min_y = min(y)
+        if min_y > min(y):
+            min_y = min(y)
+        if max_y < max(y):
+            max_y = max(y)
+        x = x + dx
+    S0 = abs(b - a) * abs(min_y - max_y)
 
+    n = 0
+    for _ in range(N):
+        x = uniform(a, b)
+        y = uniform(max_y, min_y)
+        if log(x) + sin(x) <= y <= abs(tan(0.2 * x)) + x:
+            n += 1
+    Snk = S0 * n / N
 
-def f2(a, b, dx):
-    s = 0
-    x = a
+    print('\nРезультат:\n')
 
-    while x <= b:
-        y = (y1(x + dx) + y1(x)) / 2 - (y2(x + dx) + y2(x)) / 2
-        s += y * dx
-        x += dx
+    if method:
+        print(f'Метод прямоугольника: {S:g}')
+    else:
+        print(f'Метод трапеции: {S:g}')
+    print(f'Метод Монте-Карло: {Snk:g}')
 
-    return s
-
-
-def monte_carlo(n, a, b, c, d):
-    m = 0
-    l = abs(b - a) * abs(d - c)
-
-    for _ in range(n):
-        x = random.uniform(a, b)
-        y = random.uniform(c, d)
-
-        r = is_in(x, y)
-
-        m += int(r)
-
-    return l * m / n
-
-
-def min_max(a, b, dx):
-    y_min, y_max = None, 0
-    x = a
-
-    while x <= b:
-        y = [y1(x), y2(x)]
-
-        if y_min == None: y_min = min(y)
-
-        if y_min > min(y): y_min = min(y)
-        if y_max < max(y): y_max = max(y)
-
-        x += dx
-
-    return y_min, y_max
-
-
-if __name__ == '__main__':
-    a = float(input('a: '))
-    b = float(input('b: '))
-    dx = float(input('dx: '))
-    n = int(input('dots: '))
-    print(f'Методом прямоугольника: {f1(a, b, dx)}')
-    print(f'Методом трапеции: {f2(a, b, dx)}')
-    c, d = min_max(a, b, dx)
-    print(f'Методом Монте-Карло: {monte_carlo(n, a, b, c, d)}')
+    print('\n----------------------------------------\n')
