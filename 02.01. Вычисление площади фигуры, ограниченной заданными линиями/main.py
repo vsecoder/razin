@@ -69,11 +69,22 @@ def min_max(a, b, dx):
 
 
 if __name__ == '__main__':
-    a = float(input('a: '))
-    b = float(input('b: '))
-    dx = float(input('dx: '))
-    n = int(input('dots: '))
-    print(f'Методом прямоугольника: {Rectangle(a, b, dx)}')
-    print(f'Методом трапеции: {Trapezoid_method(a, b, dx)}')
+    print('Для выбора метода интегрирования введите требуемое число:')
+    print('1 - метод прямоугольников')
+    print('2 - метод трапеций')
+    method = int(input())
+
+    a = float(input('Введите нижний предел интегрирования a: '))
+    b = float(input('Введите верхний предел интегрирования b: '))
+    dx = float(input('Введите шаг интегрирования dx: '))
+    N = int(input('\nВведите количество точек N: '))
+
+    if method == 1:
+        print(f'Методом прямоугольника: {Rectangle(a, b, dx)}')
+    else:
+        print(f'Методом трапеции: {Trapezoid_method(a, b, dx)}')
+
     c, d = min_max(a, b, dx)
-    print(f'Методом Монте Карло: {Monte_Carlo_method(n, a, b, c, d)}')
+    print(f'Методом Монте Карло: {Monte_Carlo_method(N, a, b, c, d)}')
+
+    print('\n----------------------------------------\n')
