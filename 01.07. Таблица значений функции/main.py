@@ -10,9 +10,10 @@ while True:
 
     if abs(x1) >= 1 or abs(x2) >= 1:
         print('Неверное значение x')
-        print('\n----------------------------------------\n')
+        print('\n\n----------------------------------------')
         continue
 
+    print('      x     Левая часть    Правая часть')
     i = x1
     while i < x2:
         digit = 0
@@ -21,11 +22,11 @@ while True:
         x_i = (i + 2) / (i**2 - 2*i - 3)
 
         while abs(x_i - res) > e:
-            digit = ((-1) ** (n + 1) - 5 / 3 ** (n + 1)) * i**n
+            digit = ((-1)**(n + 1) - 5 / 3**(n + 1)) * i**n
             res += digit / 4
             n += 1
 
-        print(f'{i:>5g} {x_i:>10g} {res:>10g}')
+        print(f'{i:>7g} {x_i:>15g} {res:>15g}')
         i += dx
 
     print('\n----------------------------------------\n')

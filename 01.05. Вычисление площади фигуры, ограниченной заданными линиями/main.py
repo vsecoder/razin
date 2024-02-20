@@ -1,3 +1,4 @@
+
 from math import sin, log, tan
 from random import uniform
 
@@ -6,47 +7,69 @@ while True:
     print('1 - метод прямоугольников')
     print('2 - метод трапеций')
     method = int(input())
+
     a = float(input('Введите нижний предел интегрирования a: '))
     b = float(input('Введите верхний предел интегрирования b: '))
     dx = float(input('Введите шаг интегрирования dx: '))
     N = int(input('\nВведите количество точек N: '))
 
-    min_y, max_y = None, 0
-    S = 0
+    # вычисление площади численными методами
 
+    if method == 1:                # метод прямоугольников
+        x = a
+        S = 0
+        while x <= b:
+            S += (abs(tan(0.2 * x)) + x - (log(x) + sin(x))) * dx
+            x += dx
+
+    if method == 2:                # метод трапеций
+        x = a
+        S = 0
+        while x <= b:
+            S += ((abs(tan(0.2 * (x + dx))) + (x + dx) + abs(tan(0.2 * x)) + x) -
+                  (log(x + dx) + sin(x + dx) + log(x) + sin(x))) / 2 * dx
+            x += dx
+
+    # получение максимума функции по y на данном промежутке
     x = a
+    max_y = abs(tan(0.2 * x)) + x
     while x <= b:
-        if method:
-            S += (abs(tan(0.2 * x)) + x - log(x) + sin(x)) * dx
-        else:
-            xdx = x + dx
-            S += ((abs(tan(0.2 * xdx)) + xdx + abs(tan(0.2 * x)) + x) / 2 -
-                  (log(xdx) + sin(xdx) + log(x) + sin(x)) / 2) * dx
+        y = abs(tan(0.2 * x)) + x
+        max_y = max(max_y, y)
+        x += dx
 
-        y = [abs(tan(0.2 * x)) + x, log(x) + sin(x)]
-        if min_y is None:
-            min_y = min(y)
-        if min_y > min(y):
-            min_y = min(y)
-        if max_y < max(y):
-            max_y = max(y)
-        x = x + dx
-    S0 = abs(b - a) * abs(min_y - max_y)
+    # получение минимума функции по y на данном промежутке
+    x = a
+    min_y = log(x) + sin(x)
+    while x <= b:
+        y = log(x) + sin(x)
+        min_y = min(min_y, y)
+        x += dx
 
+    # площадь прямоугольника, описанного вокруг фигуры
+    S0 = (b - a) * (max_y - min_y)
+
+    # вычисление площади методом Монте-Карло
     n = 0
     for _ in range(N):
         x = uniform(a, b)
-        y = uniform(max_y, min_y)
+        y = uniform(min_y, max_y)
         if log(x) + sin(x) <= y <= abs(tan(0.2 * x)) + x:
             n += 1
-    Snk = S0 * n / N
+
+    Smk = S0 * n / N
 
     print('\nРезультат:\n')
 
-    if method:
-        print(f'Метод прямоугольника: {S:g}')
+    if method == 1:
+        print(f'Метод прямоугольников: {S:g}')
     else:
-        print(f'Метод трапеции: {S:g}')
-    print(f'Метод Монте-Карло: {Snk:g}')
+        print(f'Метод трапеций: {S:g}')
+
+    print(f'Метод Монте-Карло: {Smk:g}')
 
     print('\n----------------------------------------\n')
+
+
+
+
