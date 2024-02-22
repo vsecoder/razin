@@ -1,40 +1,38 @@
-from square import *
-from math import sin, log, tan
+
+# -----------------------------------------------------------------------------
+import unit_var
+from unit_fun import Rectangle_method, Trapezoid_method, Monte_Carlo_method
+
+# -----------------------------------------------------------------------------
 
 
-def fun1(x):
-    return abs(tan(0.2 * x)) + x
+# основной код программмы
+while True:
+    print('Для выбора метода интегрирования введите требуемое число:')
+    print('1 - метод прямоугольников')
+    print('2 - метод трапеций\n')
+    method = int(input())
 
+    a = float(input('\nВведите нижний предел интегрирования a: '))
+    b = float(input('Введите верхний предел интегрирования b: '))
+    dx = float(input('Введите шаг интегрирования dx: '))
+    N = int(input('\nВведите количество точек N: '))
 
-def fun2(x):
-    return log(x) + sin(x)
+    if method == 1:
+        Rectangle_method(a, b, dx)
+    else:
+        Trapezoid_method(a, b, dx)
 
+    Monte_Carlo_method(a, b, N)
 
-def min_max(a, b, dx):
-    y_min, y_max = None, 0
-    x = a
+    print(f'\nРезультат:\n')
 
-    while x <= b:
-        y = [fun1(x), fun2(x)]
+    if method == 1:
+        print(f'Метод прямоугольников:     {unit_var.S:g}')
+    else:
+        print(f'Метод трапеций:            {unit_var.S:g}')
 
-        if y_min == None: y_min = min(y)
+    print(f'Метод Монте Карло:         {unit_var.Smk:g}')
 
-        if y_min > min(y): y_min = min(y)
-        if y_max < max(y): y_max = max(y)
+    print('\n----------------------------------------\n')
 
-        x += dx
-
-    return y_min, y_max
-
-
-if __name__ == '__main__':
-    a = float(input('a: '))
-    b = float(input('b: '))
-    dx = float(input('dx: '))
-    n = int(input('dots: '))
-
-    print(f'Методом прямоугольника: {Rectangle(a, b, dx)}')
-    print(f'Методом трапеции: {Trapezoid_method(a, b, dx)}')
-
-    c, d = min_max(a, b, dx)
-    print(f'Методом Монте Карло: {Monte_Carlo_method(n, a, b, c, d)}')
