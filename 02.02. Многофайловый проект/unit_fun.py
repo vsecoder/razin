@@ -1,8 +1,8 @@
 
 # -----------------------------------------------------------------------------
 from math import sin, log, tan
+from random import uniform
 import unit_var
-import random
 # -----------------------------------------------------------------------------
 
 
@@ -38,7 +38,6 @@ def Rectangle_method(a, b, dx):
 def Trapezoid_method(a, b, dx):
     s = 0
     x = a
-
     while x <= b:
         y = ((fun1(x + dx) + fun1(x)) - (fun2(x + dx) + fun2(x))) / 2
         s += y * dx
@@ -52,6 +51,7 @@ def Trapezoid_method(a, b, dx):
 # вычисление площади фигуры методом Монте-Карло
 def Monte_Carlo_method(a, b, N):
     x = a
+
     max_y = fun1(x)
     min_y = fun2(x)
 
@@ -66,9 +66,17 @@ def Monte_Carlo_method(a, b, N):
 
     n = 0
     for _ in range(N):
-        x = random.uniform(a, b)
-        y = random.uniform(min_y, max_y)
+        x = uniform(a, b)
+        y = uniform(min_y, max_y)
+
         if fun2(x) <= y <= fun1(x):
             n += 1
 
     unit_var.Smk = S0 * n / N
+
+# -----------------------------------------------------------------------------
+
+
+
+
+
